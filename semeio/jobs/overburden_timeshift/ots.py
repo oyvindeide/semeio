@@ -105,10 +105,11 @@ def ots_run(parameter_file):
         line = "{}, {}, {}" + ", {}" * num_pairs + "\n"
         with open(parms.vintages_export_file, "w") as f:
 
-            point = 0
-            for x_index, y_index in product(
-                range(1, surface_horizon.get_nx() + 1),
-                range(1, surface_horizon.get_ny() + 1),
+            for point, (x_index, y_index) in enumerate(
+                product(
+                    range(1, surface_horizon.get_nx() + 1),
+                    range(1, surface_horizon.get_ny() + 1),
+                )
             ):
                 x_cord, y_cord, _ = surface_horizon.get_xy_value_from_ij(
                     x_index, y_index
@@ -130,7 +131,6 @@ def ots_run(parameter_file):
                         *ts
                     )
                 )
-                point += 1
 
 
 class OverburdenTimeshift(object):
