@@ -238,7 +238,7 @@ class AhmAnalysisJob(ErtScript):
             # The order of the context managers is important, as we want to create a new
             # storage in a temporary directory.
             with (
-                tempfile.TemporaryDirectory() as tmp_dir,
+                tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp_dir,
                 open_storage(os.path.join(tmp_dir, "tmp_storage"), "w") as tmp_storage,
             ):
                 try:
